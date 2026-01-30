@@ -1,0 +1,12 @@
+#Local Data files
+data
+frames
+__pycache__
+lancedb
+
+#enviornmental files
+.env
+
+#Ide files 
+install_ffmpeg.ps1
+
