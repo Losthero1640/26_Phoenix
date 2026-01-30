@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root,
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 40 20% 95%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 40 20% 95%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 20% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 38 100% 60%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 40 20% 95%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --text-hero: 40 20% 98%;
+    --text-body: 0 0% 70%;
+    --text-muted: 0 0% 45%;
+    --divider: 0 0% 12%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  /* Typography utilities */
+  .text-display {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+
+  .text-display-sm {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  .text-body-lg {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+  }
+
+  .text-body {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .text-caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  /* Spacing utilities */
+  .py-section {
+    padding-top: clamp(6rem, 15vh, 12rem);
+    padding-bottom: clamp(6rem, 15vh, 12rem);
+  }
+
+  .py-section-sm {
+    padding-top: clamp(4rem, 10vh, 8rem);
+    padding-bottom: clamp(4rem, 10vh, 8rem);
+  }
+
+  .pb-section {
+    padding-bottom: clamp(6rem, 15vh, 12rem);
+  }
+
+  /* Color utilities */
+  .text-hero {
+    color: hsl(var(--text-hero));
+  }
+
+  .text-body-color {
+    color: hsl(var(--text-body));
+  }
+
+  .text-subtle {
+    color: hsl(var(--text-muted));
+  }
+
+  .divider {
+    border-color: hsl(var(--divider));
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(40 20% 98%) 0%, hsl(40 20% 70%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Animation utilities */
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .fade-in-up-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .fade-in-up-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .fade-in-up-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .fade-in-up-delay-4 {
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
