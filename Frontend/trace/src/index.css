@@ -1,0 +1,249 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TRACE Design System - Dark Mode First
+   Inspired by Notion × Perplexity × Obsidian
+   Professional, research-oriented, high-trust
+*/
+
+@layer base {
+  :root {
+    /* Light mode - kept minimal, dark is primary */
+    --background: 220 14% 96%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 173 58% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 220 20% 20%;
+
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 173 58% 39%;
+
+    --radius: 0.5rem;
+
+    /* TRACE custom tokens */
+    --trace-surface: 220 14% 98%;
+    --trace-surface-elevated: 0 0% 100%;
+    --trace-border-subtle: 220 13% 90%;
+    --trace-text-primary: 220 20% 10%;
+    --trace-text-secondary: 220 10% 40%;
+    --trace-text-tertiary: 220 10% 55%;
+    --trace-citation: 217 91% 60%;
+    --trace-citation-bg: 217 91% 95%;
+    --trace-success: 142 71% 45%;
+    --trace-warning: 38 92% 50%;
+  }
+
+  .dark {
+    /* Deep charcoal/slate palette */
+    --background: 222 21% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 18% 11%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 18% 11%;
+    --popover-foreground: 210 20% 98%;
+
+    /* Teal primary for trust and professionalism */
+    --primary: 173 58% 45%;
+    --primary-foreground: 222 21% 8%;
+
+    --secondary: 220 16% 16%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 220 16% 14%;
+    --muted-foreground: 215 15% 55%;
+
+    /* Blue accent for citations */
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 16% 18%;
+    --input: 220 16% 16%;
+    --ring: 173 58% 45%;
+
+    /* TRACE custom tokens - dark mode */
+    --trace-surface: 220 18% 10%;
+    --trace-surface-elevated: 220 16% 13%;
+    --trace-border-subtle: 220 16% 20%;
+    --trace-text-primary: 210 20% 98%;
+    --trace-text-secondary: 215 15% 70%;
+    --trace-text-tertiary: 215 15% 50%;
+    --trace-citation: 217 91% 65%;
+    --trace-citation-bg: 217 91% 20%;
+    --trace-success: 142 71% 45%;
+    --trace-warning: 38 92% 50%;
+    
+    /* Sidebar */
+    --sidebar-background: 222 21% 7%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 173 58% 45%;
+    --sidebar-primary-foreground: 222 21% 8%;
+    --sidebar-accent: 220 16% 14%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 16% 15%;
+    --sidebar-ring: 173 58% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar for dark mode */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--trace-surface));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+}
+
+@layer components {
+  /* Citation badge styling */
+  .citation-badge {
+    @apply inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-mono font-medium rounded;
+    @apply bg-[hsl(var(--trace-citation-bg))] text-[hsl(var(--trace-citation))];
+    @apply cursor-pointer transition-all duration-200;
+    @apply hover:bg-[hsl(var(--trace-citation)/0.3)] hover:scale-105;
+  }
+
+  /* Evidence card hover effect */
+  .evidence-card {
+    @apply relative overflow-hidden transition-all duration-200;
+    @apply hover:bg-secondary/80;
+  }
+
+  .evidence-card::before {
+    @apply absolute left-0 top-0 bottom-0 w-0.5 bg-primary opacity-0 transition-opacity duration-200;
+    content: '';
+  }
+
+  .evidence-card:hover::before,
+  .evidence-card.active::before {
+    @apply opacity-100;
+  }
+
+  /* Upload zone styling */
+  .upload-zone {
+    @apply border-2 border-dashed border-border rounded-lg p-6;
+    @apply transition-all duration-200;
+    @apply hover:border-primary/50 hover:bg-secondary/50;
+  }
+
+  .upload-zone.dragging {
+    @apply border-primary bg-primary/10;
+  }
+
+  /* Message bubble styling */
+  .message-user {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .message-ai {
+    @apply bg-card border border-border;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+
+  /* Subtle glow effect */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.15),
+                0 0 40px hsl(var(--primary) / 0.1);
+  }
+
+  /* Panel shadows */
+  .panel-shadow {
+    box-shadow: 0 1px 3px hsl(var(--background) / 0.5),
+                0 4px 12px hsl(var(--background) / 0.3);
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulseSoft 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseSoft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+}

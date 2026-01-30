@@ -9,16 +9,13 @@ import { fileURLToPath } from "node:url";
 const tsconfigRootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default tseslint.config(
-  // Ignore built output + the nested Trace app (it has its own ESLint config).
-  { ignores: ["dist", "trace/**"] },
+  { ignores: ["dist"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
-      // Fix: repo contains multiple TS roots (Frontend/ and Frontend/trace/).
-      // typescript-eslint needs an explicit root dir to resolve the correct tsconfig.
       parserOptions: {
         tsconfigRootDir,
       },
