@@ -1,0 +1,58 @@
+
+
+.explainer-section {
+  padding: clamp(4rem, 10vh, 8rem) 1.5rem;
+  max-width: 80rem;
+  margin: auto;
+
+  /* Optional hero feel */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.type-on-scroll {
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 500;
+
+  /* vertical dominance */
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+
+  /* force vertical stacking */
+  max-width: 32ch;
+
+  color: transparent;
+
+  --cursor-hue: 320;
+  --cursor-sat: 100%;
+  --cursor-light: 50%;
+
+  background:
+    linear-gradient(
+      hsl(var(--cursor-hue) var(--cursor-sat) var(--cursor-light))
+      0 0
+    )
+    calc(var(--idx) * 1ch) 50% / 0.9ch 1lh no-repeat,
+    linear-gradient(#ffffff 0 0) 0 0 /
+    calc(var(--idx) * 1ch) 100% no-repeat;
+
+  background-clip: text, text;
+
+  /* smooth micro-movement */
+  transition: background-position 0.15s linear;
+}
+
+.type-on-scroll span {
+  white-space: pre-wrap;
+}
+
+.subtext {
+  margin-top: 2rem;
+  max-width: 28ch;
+
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: hsl(0 0% 70%);
+}
